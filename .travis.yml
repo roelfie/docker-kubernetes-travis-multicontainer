@@ -1,0 +1,23 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t roelfie/fibonacci-client-test -f ./client/Dockerfile.dev ./client
+
+# Tell Create React App / Jest to run tests once and exit (instead of showing the interactive CLI).
+script:
+  - docker run -e CI=true roelfie/fibonacci-client-test npm run test
+
+after_success:
+  - docker build -t roelfie/fibonacci-client ./client
+  - docker build -t roelfie/fibonacci-api ./server
+  - docker build -t roelfie/fibonacci-worker ./worker
+  - docker build -t roelfie/fibonacci-nginx ./nginx
+  # Log in to the Docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" -p --password-stdin
+  # Push built images to Docker Hub
+  - docker push roelfie/fibonacci-client
+  - docker push roelfie/fibonacci-api
+  - docker push roelfie/fibonacci-worker
+  - docker push roelfie/fibonacci-nginx

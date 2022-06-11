@@ -26,7 +26,7 @@ The application contains two instances of nginx:
 * One nginx in front, to route the data to 'client' or to 'api'.
 * One nginx to host the 'client' React app (on a non-standard port!)
 
-![](./_img/multiple-nginx.png)
+![nginx instances](./_img/multiple-nginx.png)
 
 ### More info
 * https://docs.docker.com/engine/reference/run/#env-environment-variables
