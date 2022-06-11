@@ -15,7 +15,7 @@ after_success:
   - docker build -t roelfie/fibonacci-worker ./worker
   - docker build -t roelfie/fibonacci-nginx ./nginx
   # Log in to the Docker CLI
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" -p --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Push built images to Docker Hub
   - docker push roelfie/fibonacci-client
   - docker push roelfie/fibonacci-api
