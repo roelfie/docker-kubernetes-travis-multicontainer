@@ -21,3 +21,15 @@ after_success:
   - docker push roelfie/fibonacci-api
   - docker push roelfie/fibonacci-worker
   - docker push roelfie/fibonacci-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'eu-west-3'
+  app: 'fibonacci'
+  env: 'Fibonacci-env'
+  bucket_name: 'elasticbeanstalk-eu-west-3-837063707632'
+  bucket_path: 'fibonacci'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
