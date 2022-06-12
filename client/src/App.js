@@ -11,6 +11,7 @@ function App() {
           <header>
             <Link to="/">Home</Link>
             <Link to="/otherpage">Other Page</Link>
+          <h1 className="App-title">Fibonacci Calculator v2</h1>
           </header>
           <div>
             <Route exact path="/" component={Fib} />
